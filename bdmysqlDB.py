@@ -1,6 +1,50 @@
 #!/usr/bin/env python
 # coding:utf-8
 __author__ = 'lixin'
+'''
+安装MySQL
+
+可以直接从MySQL官方网站下载最新的Community Server 5.6.x版本。MySQL是跨平台的，选择对应的平台下载安装文件，安装即可。
+
+安装时，MySQL会提示输入root用户的口令，请务必记清楚。如果怕记不住，就把口令设置为password。
+
+在Windows上，安装时请选择UTF-8编码，以便正确地处理中文。
+
+在Mac或Linux上，需要编辑MySQL的配置文件，把数据库默认的编码全部改为UTF-8。MySQL的配置文件默认存放在/etc/my.cnf或者/etc/mysql/my.cnf：
+
+[client]
+default-character-set = utf8
+
+[mysqld]
+default-storage-engine = INNODB
+character-set-server = utf8
+collation-server = utf8_general_ci
+重启MySQL后，可以通过MySQL的客户端命令行检查编码：
+
+$ mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor...
+...
+
+mysql> show variables like '%char%';
++--------------------------+--------------------------------------------------------+
+| Variable_name            | Value                                                  |
++--------------------------+--------------------------------------------------------+
+| character_set_client     | utf8                                                   |
+| character_set_connection | utf8                                                   |
+| character_set_database   | utf8                                                   |
+| character_set_filesystem | binary                                                 |
+| character_set_results    | utf8                                                   |
+| character_set_server     | utf8                                                   |
+| character_set_system     | utf8                                                   |
+| character_sets_dir       | /usr/local/mysql-5.1.65-osx10.6-x86_64/share/charsets/ |
++--------------------------+--------------------------------------------------------+
+8 rows in set (0.00 sec)
+看到utf8字样就表示编码设置正确。
+'''
+
+# 需要安装MYSQL驱动,指令如下：
+# $ pip install mysql-connector-python --allow-external mysql-connector-python
 
 # 导入:
 import uuid
